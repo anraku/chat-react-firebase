@@ -1,15 +1,16 @@
 import React from 'react';
-import './App.css';
+
+import AddMessageComponent from './components/AddMessage';
+import MessageListComponent from './components/MessageList';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <>
+      <MessageListComponent
+        messages={[{ text: 'hello', author: 'me', id: 1 }]}
+      />
+      <AddMessageComponent />
+    </>
   );
 };
 
