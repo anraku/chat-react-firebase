@@ -10,7 +10,9 @@ const MessageComponent: FC<MessageProps> = props => {
 
   return (
     <>
-      <span>{message.text}</span>
+      <span>
+        {message.author}: {message.text}
+      </span>
     </>
   );
 };

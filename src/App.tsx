@@ -6,9 +6,7 @@ import MessageListComponent from './components/MessageList';
 const App: React.FC = () => {
   return (
     <>
-      <MessageListComponent
-        messages={[{ text: 'hello', author: 'me', id: 1 }]}
-      />
+      <MessageListComponent messages={[{ text: 'hello', author: 'me' }]} />
       <AddMessageComponent />
     </>
   );

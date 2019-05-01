@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import MessageComponent from './Message';
 import { Message } from '../domain/models';
 
-interface MessageListProps {
+export interface MessageListProps {
   messages: Message[];
 }
 
