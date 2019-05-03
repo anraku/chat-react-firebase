@@ -28,19 +28,20 @@ export type ChatAction =
   | ReturnType<typeof addMessage>
   | ReturnType<typeof messageReceived>;
 
-const messages: Reducer<ChatState, ChatAction> = (
+const message: Reducer<ChatState, ChatAction> = (
   state: ChatState = initialState,
   action: ChatAction,
-): ChatState => {
+) => {
   switch (action.type) {
     case ADD_MESSAGE:
     case MESSAGE_RECEIVED:
-      state.messages.concat({
-        text: action.text,
-        author: action.author,
-      });
-
-      return state;
+      return {
+        ...state,
+        messages: state.messages.concat({
+          text: action.text,
+          author: action.author,
+        }),
+      };
     default:
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       // const _: never = action;
@@ -49,4 +50,4 @@ const messages: Reducer<ChatState, ChatAction> = (
   }
 };
 
-export default messages;
+export default message;

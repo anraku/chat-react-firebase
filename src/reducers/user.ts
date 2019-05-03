@@ -25,7 +25,7 @@ export type RoomAction =
   | ReturnType<typeof addUser>
   | ReturnType<typeof usersList>;
 
-const users: Reducer<RoomState, RoomAction> = (
+const user: Reducer<RoomState, RoomAction> = (
   state: RoomState = initialState,
   action: RoomAction,
 ): RoomState => {
@@ -44,4 +44,4 @@ const users: Reducer<RoomState, RoomAction> = (
   }
 };
 
-export default users;
+export default user;
