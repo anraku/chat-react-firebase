@@ -1,6 +1,11 @@
 import React, { FC } from 'react';
+import './AddMessage.css';
 
-const AddMessageComponent: FC<{}> = () => {
+interface AddMessageProps {
+  addMessage: (text: string, author: string) => void;
+}
+
+const AddMessageComponent: FC<AddMessageProps> = props => {
   let input: HTMLInputElement;
 
   return (
@@ -9,6 +14,7 @@ const AddMessageComponent: FC<{}> = () => {
         id="message-text"
         onKeyPress={e => {
           if (e.key === 'Enter') {
+            props.addMessage(input.value, 'Me');
             input.value = '';
           }
         }}
@@ -17,7 +23,7 @@ const AddMessageComponent: FC<{}> = () => {
           input = node;
         }}
       />
-      <div className="ui button">Search</div>
+      <div className="ui button">送信</div>
     </div>
   );
 };
