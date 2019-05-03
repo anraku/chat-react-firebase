@@ -1,19 +1,16 @@
 import { connect } from 'react-redux';
-import MessageListComponent, {
-  MessageListProps,
-} from '../components/MessageList';
-import { ChatState } from '../reducers/chat';
-import { Message } from '../domain/models';
+import { ApplicationState } from '../reducers/index';
+import { ChatState } from '../reducers/message';
 
-interface StateProps {
-  messages: Message[];
-}
+import MessageListComponent from '../components/MessageList';
 
-const mapStateToProps = (state: ChatState): StateProps => ({
-  messages: state.messages,
-});
+// interface StateProps {
+//   messages: Message[];
+// }
 
-export const MessageListContainer = connect(
+const mapStateToProps = (state: ApplicationState): ChatState => state.chat;
+
+export const MessageList = connect(
   mapStateToProps,
   {},
 )(MessageListComponent);

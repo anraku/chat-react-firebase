@@ -1,13 +1,12 @@
 import React from 'react';
-
-import AddMessageComponent from './components/AddMessage';
-import MessageListComponent from './components/MessageList';
+import { AddMessage } from './containers/AddMessage';
+import { MessageList } from './containers/MessageList';
 
 const App: React.FC = () => {
   return (
     <>
-      <MessageListComponent messages={[{ text: 'hello', author: 'me' }]} />
-      <AddMessageComponent />
+      <MessageList />
+      <AddMessage />
     </>
   );
 };
