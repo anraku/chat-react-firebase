@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 
-export const ADD_USER = 'ROOM/ADD_USER';
-export const USERS_LIST = 'ROOM/USERS_LIST';
+export const ADD_USER = 'USER/ADD_USER';
+export const USERS_LIST = 'USER/USERS_LIST';
 
 export const addUser = (user: string) => ({
   type: ADD_USER as typeof ADD_USER,
