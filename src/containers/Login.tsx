@@ -1,25 +1,14 @@
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import firebase from '../config/index';
 
-import LoginComponent from '../components/Login';
-import { changeAuthStatus } from '../reducers/auth';
+import LoginComponent, { LoginProps } from '../components/Login';
+import { AuthState, changeStatus } from '../reducers/auth';
+import { ApplicationState } from '../reducers/index';
 
-interface StateProps {
-  loginUser: firebase.UserInfo;
-  login: () => void;
-  logout: () => void;
-}
-
-const mapStateToProps = (state: any): StateProps => ({
-  loginUser: state.loginUser,
-  login: (): void => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-  },
-  logout: (): void => {
-    firebase.auth().signOut();
-  },
+const mapStateToProps = (state: ApplicationState): AuthState => ({
+  loginUser: state.auth.loginUser,
 });
 
 interface DispatchProps {
@@ -27,15 +16,36 @@ interface DispatchProps {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  changeAuthStatus: (user: firebase.User) => dispatch(changeAuthStatus(user)),
+  changeAuthStatus: (user: firebase.User) => dispatch(changeStatus(user)),
 });
 
-export type LoginProps = StateProps | Dispatch;
-// const LoginContainer: FC<LoginProps> = ({ loginUser, login, logout }) => {
-//   return <LoginComponent loginUser={loginUser} login={login} logout={logout} />;
+// const login = (): void => {
+//   const provider = new firebase.auth.GoogleAuthProvider();
+//   firebase.auth().signInWithRedirect(provider);
 // };
+
+// const logout = (): void => {
+//   firebase.auth().signOut();
+// };
+
+type EnhancedAuthProps = LoginProps & DispatchProps;
+
+const LoginContainer: FC<EnhancedAuthProps> = ({
+  loginUser = null,
+  changeAuthStatus,
+}) => {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        changeAuthStatus(user);
+      }
+    });
+  }, [loginUser]);
+
+  return <LoginComponent loginUser={loginUser} />;
+};
 
 export const Login = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginComponent);
+)(LoginContainer);

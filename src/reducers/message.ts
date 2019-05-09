@@ -43,9 +43,6 @@ const message: Reducer<ChatState, ChatAction> = (
         }),
       };
     default:
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const _: never = action;
-
       return state;
   }
 };

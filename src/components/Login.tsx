@@ -1,27 +1,36 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import firebase from '../config/index';
 
-interface LoginProps {
-  loginUser: firebase.UserInfo;
-  login: () => void;
-  logout: () => void;
-  changeAuthStatus: (user: firebase.User) => void;
+export interface LoginProps {
+  loginUser: firebase.User | null;
+  // login: () => void;
+  // logout: () => void;
+  // changeAuthStatus: (user: firebase.User) => void;
 }
 
-const LoginComponent: FC<LoginProps> = props => {
-  const { login, logout, loginUser, changeAuthStatus } = props;
+const login = (): void => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithRedirect(provider);
+};
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        changeAuthStatus(user);
-      }
-    });
-  }, []);
+const logout = (): void => {
+  firebase.auth().signOut();
+};
+
+const LoginComponent: FC<LoginProps> = props => {
+  const { loginUser } = props;
+
+  // useEffect(() => {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       changeAuthStatus(user);
+  //     }
+  //   });
+  // }, []);
 
   return (
     <>
-      <p>{loginUser.displayName}さんこんにちは</p>
+      <p>{loginUser ? loginUser.displayName : 'guest'}さんこんにちは</p>
       <button type="button" onClick={logout}>
         Google Logout
       </button>
