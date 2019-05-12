@@ -1,12 +1,12 @@
 import React from 'react';
 import { AddMessage } from './containers/AddMessage';
 import { MessageList } from './containers/MessageList';
-import { Login } from './containers/Login';
+import { Auth } from './containers/Auth';
 
 const App: React.FC = () => {
   return (
     <>
-      <Login />
+      <Auth />
       <MessageList />
       <AddMessage />
     </>
