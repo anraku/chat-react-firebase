@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import firebase from '../config/index';
+import { Link } from 'react-router-dom';
 
 interface AuthProps {
   loginUser?: firebase.User | null;
@@ -27,6 +28,7 @@ const AuthComponent: FC<AuthProps> = props => {
           </button>
         </>
       )}
+      <Link to={"/login"}>login</Link>
     </>
   );
 };

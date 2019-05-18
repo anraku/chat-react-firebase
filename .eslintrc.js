@@ -52,6 +52,7 @@ module.exports = {
     'newline-before-return': 'error',
     'no-console': 'warn',
     'require-yield': 'error',
+    "spaced-comment": ["error", "always", { "markers": ["/"] }],
 
     // @typescript-eslint
     '@typescript-eslint/explicit-function-return-type': 'off',

@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     const user = firebase.auth().currentUser;
     if (!user) {
       const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithRedirect(provider);
+      firebase.auth().signInWithPopup(provider);
     } else {
       dispatch(changeAuthStatus(firebase.auth().currentUser));
     }

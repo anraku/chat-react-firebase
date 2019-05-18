@@ -1,0 +1,19 @@
+.twitterIcon{
+  width: 20px;
+  height: 20px;
+  fill: '#1DA1F2';
+}
+
+#btn-group {
+  display: block;
+}
+
+.btn {
+  display: block;
+  margin-top: 5px;
+}
+
+ul li {
+  padding-top: 10px;
+  list-style-type: none;
+}

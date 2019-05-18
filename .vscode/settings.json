@@ -1,0 +1,18 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.autoFixOnSave": true,
+  "eslint.enable": true, // ESLint有効化
+  // プロジェクト配下のeslintrc.jsを読み込み
+  "eslint.options": {
+    "configFile": ".eslintrc.js"
+  },
+  // 適応するファイルタイプを決定
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    {
+      "language": "react",
+      "autoFix": true
+    }
+  ],
+}
