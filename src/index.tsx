@@ -7,10 +7,10 @@ import 'semantic-ui-css/semantic.min.css';
 
 import reducers from './reducers/index';
 import { addMessage } from './reducers/message';
-import { BrowserRouter, Route } from "react-router-dom";
-import App from './App';
-import { Auth } from './containers/Auth';
-import LoginComponent from './components/Login';
+import { BrowserRouter } from "react-router-dom";
+import { renderRoutes } from 'react-router-config';
+
+import Routes from './routes';
 
 /* eslint-disable no-underscore-dangle, @typescript-eslint/no-explicit-any */
 const composeEnhancers =
@@ -27,9 +27,7 @@ store.dispatch(addMessage('testdesu', 'Me'));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Route path="/" exact={true} component={App} />
-      <Route path="/login" exact={true} component={LoginComponent} />
-      <Route path="/auth" exact={true} component={Auth} />
+      {renderRoutes(Routes)}
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
