@@ -1,6 +1,6 @@
 import App from './App';
 import { Auth } from './containers/Auth';
-import LoginComponent from './components/Login';
+import { Login } from './containers/Login';
 
 const routes = [
   {
@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/login',
     exact: true,
-    component: LoginComponent,
+    component: Login,
   },
 ];
 

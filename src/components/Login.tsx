@@ -19,8 +19,8 @@ const LoginComponent: FC<AuthProps> = props => {
         </Button>
         </li>
         <li>
-        <Button className="btn" color='google plus'>
-          <Icon name='google plus' onClick={handleLogin} /> Google Plusでログインする
+        <Button className="btn" color='google plus' onClick={handleLogin}>
+          <Icon name='google plus'/> Google Plusでログインする
         </Button>
         </li>
       </ul>
