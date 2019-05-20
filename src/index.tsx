@@ -11,6 +11,8 @@ import { BrowserRouter } from "react-router-dom";
 import { renderRoutes } from 'react-router-config';
 
 import Routes from './routes';
+import { Login } from './containers/Login';
+import App from './App';
 
 /* eslint-disable no-underscore-dangle, @typescript-eslint/no-explicit-any */
 const composeEnhancers =
@@ -24,11 +26,15 @@ const store = createStore(reducers, enhancer);
 
 store.dispatch(addMessage('testdesu', 'Me'));
 
+const authed = false;
+const authPath = '/login';
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      {renderRoutes(Routes)}
-    </BrowserRouter>
+    {/* <BrowserRouter> */}
+      {/* {renderRoutes(Routes)} */}
+      <App />
+    {/* </BrowserRouter> */}
   </Provider>,
   document.getElementById('root'),
 );

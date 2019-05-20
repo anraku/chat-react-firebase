@@ -1,5 +1,5 @@
 import App from './App';
-import { Auth } from './containers/Auth';
+import { Auth } from './containers/Auth2';
 import { Login } from './containers/Login';
 
 const routes = [
