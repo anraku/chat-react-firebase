@@ -1,5 +1,3 @@
-// const Auth = props => (props.currentUser.isLoggedIn ? props.children : <Redirect to={'/login'}/>)
-
 import React, { FC } from 'react';
 import firebase from '../config/index';
 import { Link, Redirect } from 'react-router-dom';

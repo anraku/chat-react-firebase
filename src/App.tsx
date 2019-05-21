@@ -1,13 +1,8 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route, Switch
+  Route, Switch,
 } from 'react-router-dom'
-
-import { AddMessage } from './containers/AddMessage';
-import { MessageList } from './containers/MessageList';
-import Auth from './components/Auth';
-import Auth2 from './components/Auth2';
 import { Login } from './containers/Login';
 
 const App: React.FC = () => {
@@ -15,11 +10,11 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route exact path="/login" component={Login}/>
-        <Auth>
+        {/* <Auth>
           <Switch>
             <Route exact path="/auth" component={Auth2}/>
           </Switch>
-        </Auth>
+        </Auth> */}
       </Switch>
     </Router>
   );

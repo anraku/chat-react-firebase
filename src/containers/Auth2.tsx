@@ -5,8 +5,7 @@ import firebase from '../config/index';
 
 import { AuthState, changeAuthStatus } from '../reducers/auth';
 import { ApplicationState } from '../reducers/index';
-import LoginComponent from '../components/Login';
-import { Redirect } from 'react-router';
+import AuthComponent from '../components/Auth2';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
   loginUser: state.auth.loginUser,
@@ -14,12 +13,17 @@ const mapStateToProps = (state: ApplicationState): AuthState => ({
 
 export interface DispatchProps {
   dispatchAuthStatus: (user: firebase.User | null) => void;
+  handleLogout: () => void;
   handleLogin: () => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   dispatchAuthStatus: (user: firebase.User | null) =>
     dispatch(changeAuthStatus(user)),
+  handleLogout: () => {
+    firebase.auth().signOut();
+    dispatch(changeAuthStatus(null));
+  },
   handleLogin: () => {
     const user = firebase.auth().currentUser;
     if (!user) {
@@ -31,27 +35,26 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   },
 });
 
-const LoginContainer: FC<AuthState & DispatchProps> = ({
+const AuthContainer: FC<AuthState & DispatchProps> = ({
   loginUser,
-  // dispatchAuthStatus,
+  dispatchAuthStatus,
   handleLogin,
+  handleLogout,
 }) => {
-  // firebase.auth().onAuthStateChanged(user => {
-  //   dispatchAuthStatus(user);
-  // });
-  
+  firebase.auth().onAuthStateChanged(user => {
+    dispatchAuthStatus(user);
+  });
+
   return (
-    loginUser? (
-      <Redirect to={'/auth'} />
-    ) : (
-      <LoginComponent
-        handleLogin={handleLogin}
-      />
-    )
+    <AuthComponent
+      loginUser={loginUser}
+      handleLogin={handleLogin}
+      handleLogout={handleLogout}
+    />
   );
 };
 
-export const Login = connect(
+export const Auth = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LoginContainer);
+)(AuthContainer);
