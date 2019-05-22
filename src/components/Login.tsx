@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent } from 'react';
 
 interface AuthProps {
-  handleLogin?: () => void;
+  handleLogin?: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 const LoginComponent: FC<AuthProps> =  ({
@@ -10,7 +10,7 @@ const LoginComponent: FC<AuthProps> =  ({
   <>
   <form onSubmit={handleLogin}>
     <h2>名前を入力してください</h2>
-    <input name='username' placeholder='Input your name' />
+    <input id='userName' placeholder='Input your name' />
     <button type='submit'>ログイン</button>
   </form>
   </>

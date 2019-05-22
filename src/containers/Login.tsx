@@ -1,48 +1,35 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import firebase from '../config/index';
 
-import { AuthState, changeAuthStatus } from '../reducers/auth';
+import { AuthState, setUserName } from '../reducers/auth';
 import { ApplicationState } from '../reducers/index';
 import LoginComponent from '../components/Login';
 import { Redirect } from 'react-router';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
-  loginUser: state.auth.loginUser,
+  userName: state.auth.userName,
 });
 
 export interface DispatchProps {
-  dispatchAuthStatus: (user: firebase.User | null) => void;
-  handleLogin: () => void;
+  handleLogin: (event: FormEvent<HTMLFormElement>) => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  dispatchAuthStatus: (user: firebase.User | null) =>
-    dispatch(changeAuthStatus(user)),
-  handleLogin: () => {
-    const user = firebase.auth().currentUser;
-    if (!user) {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider);
-    } else {
-      dispatch(changeAuthStatus(firebase.auth().currentUser));
-    }
+  handleLogin: e => {
+    e.preventDefault()
+    const userName = (e.currentTarget.querySelector('#userName') as HTMLInputElement).value
+    dispatch(setUserName(userName))
   },
 });
 
 const LoginContainer: FC<AuthState & DispatchProps> = ({
-  loginUser,
-  // dispatchAuthStatus,
+  userName,
   handleLogin,
 }) => {
-  // firebase.auth().onAuthStateChanged(user => {
-  //   dispatchAuthStatus(user);
-  // });
-  
   return (
-    loginUser? (
-      <Redirect to={'/auth'} />
+    userName? (
+      <Redirect to={'/chat'} />
     ) : (
       <LoginComponent
         handleLogin={handleLogin}

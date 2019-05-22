@@ -4,17 +4,15 @@ import {
   Route, Switch,
 } from 'react-router-dom'
 import { Login } from './containers/Login';
+import Chat from './components/Chat';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login" component={Login}/>
-        {/* <Auth>
-          <Switch>
-            <Route exact path="/auth" component={Auth2}/>
-          </Switch>
-        </Auth> */}
+        <Route exact path='/' component={() => <><h2>Root</h2></>} />
+        <Route path='/login' component={Login}/>
+        <Route path='/chat' component={Chat} />
       </Switch>
     </Router>
   );
