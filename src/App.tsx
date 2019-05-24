@@ -4,7 +4,7 @@ import {
   Route, Switch,
 } from 'react-router-dom'
 import { Login } from './containers/Login';
-import Chat from './components/Chat';
+import Chat from './containers/Chat';
 
 const App: React.FC = () => {
   return (

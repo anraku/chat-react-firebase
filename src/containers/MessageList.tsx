@@ -3,8 +3,13 @@ import { ApplicationState } from '../reducers/index';
 import { ChatState } from '../reducers/message';
 
 import MessageListComponent from '../components/MessageList';
+import { AuthState } from '../reducers/auth';
 
-const mapStateToProps = (state: ApplicationState): ChatState => state.chat;
+type StateProps = ChatState & AuthState;
+
+const mapStateToProps = (state: ApplicationState): StateProps => ({
+  messages: state.chat.messages,
+});
 
 export const MessageList = connect(
   mapStateToProps,

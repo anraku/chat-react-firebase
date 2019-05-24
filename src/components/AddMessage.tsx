@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import './AddMessage.css';
 
 interface AddMessageProps {
+  userName: string | undefined;
   addMessage: (text: string, author: string) => void;
 }
 
@@ -14,7 +15,7 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
         id="message-text"
         onKeyPress={e => {
           if (e.key === 'Enter') {
-            props.addMessage(input.value, 'Me');
+            props.addMessage(input.value, (props.userName? props.userName : '名無しさん') );
             input.value = '';
           }
         }}
