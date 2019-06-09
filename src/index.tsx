@@ -20,8 +20,6 @@ const composeEnhancers =
 const enhancer = composeEnhancers();
 const store = createStore(reducers, enhancer);
 
-store.dispatch(addMessage('testdesu', 'Me'));
-
 ReactDOM.render(
   <Provider store={store}>
       <App />

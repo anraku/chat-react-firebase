@@ -18,7 +18,7 @@ const MessageComponent: FC<MessageProps> = props => {
       />
       <List.Content>
         <List.Header as="a">{message.author}</List.Header>
-        <List.Description>{message.text}</List.Description>
+        <List.Description>{message.message}</List.Description>
       </List.Content>
     </List.Item>
   );
