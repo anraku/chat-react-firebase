@@ -26,13 +26,14 @@ const messagesRef = firebaseDB.ref('messages')
 type MessageListProps = ChatState & DispatchProps
 const MessageListContainer: FC<MessageListProps> = ({ messages, initialMessage }) => {
   useEffect(() => {
-    messagesRef.on('value', (snapshot) => {
+    messagesRef.once('value').then(snapshot => {
       let messageList: Message[] = []
       if (snapshot) {
         messageList = messages.concat(Object.values(snapshot.val()))
       }
       initialMessage(messageList);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

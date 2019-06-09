@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 
 import reducers from './reducers/index';
-import { addMessage } from './reducers/message';
 
 import App from './App';
 

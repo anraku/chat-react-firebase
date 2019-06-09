@@ -14,8 +14,8 @@ const MessageListComponent: FC<MessageListProps> = ({ messages = [] }) => {
   return (
     <div id="message-list">
       <List>
-        {messages.map(message => (
-          <MessageComponent message={message} />
+        {messages.map((message, index) => (
+          <MessageComponent key={index} message={message} />
         ))}
       </List>
     </div>
