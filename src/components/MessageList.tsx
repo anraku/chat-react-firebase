@@ -1,10 +1,21 @@
 import React, { FC } from 'react';
 import { List } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 import MessageComponent from './Message';
 import { Message } from '../domain/models';
 
-import './MessageList.css';
+// import './MessageList.css';
+
+const Wrapper = styled.div`
+  padding-left: 2%;
+  padding-top: 2%;
+  height: 90vh;
+  overflow-y: auto;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: lightgray;
+`;
 
 export interface MessageListProps {
   messages: Message[];
@@ -12,13 +23,13 @@ export interface MessageListProps {
 
 const MessageListComponent: FC<MessageListProps> = ({ messages = [] }) => {
   return (
-    <div id="message-list">
+    <Wrapper>
       <List>
         {messages.map((message, index) => (
           <MessageComponent key={index} message={message} />
         ))}
       </List>
-    </div>
+    </Wrapper>
   );
 };
 

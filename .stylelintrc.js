@@ -6,10 +6,10 @@ module.exports = {
 	],
   ignoreFiles: [
     '**/node_modules/**',
-    'src/styles/**'
   ],
   rules: {
     'indentation': 2,
     'string-quotes': 'single',
+    'declaration-empty-line-before': 'never',
   },
 };
