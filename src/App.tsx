@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route, Switch,
 } from 'react-router-dom'
-import { Login } from './containers/Login';
+import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
 
 const App: React.FC = () => {

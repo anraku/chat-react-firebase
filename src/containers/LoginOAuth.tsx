@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import firebase from '../config/index';
@@ -33,16 +33,19 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 
 const LoginContainer: FC<AuthState & DispatchProps> = ({
   loginUser,
-  // dispatchAuthStatus,
+  dispatchAuthStatus,
   handleLogin,
 }) => {
-  // firebase.auth().onAuthStateChanged(user => {
-  //   dispatchAuthStatus(user);
-  // });
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      dispatchAuthStatus(user);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
     loginUser? (
-      <Redirect to={'/auth'} />
+      <Redirect to={'/chat'} />
     ) : (
       <LoginComponent
         handleLogin={handleLogin}

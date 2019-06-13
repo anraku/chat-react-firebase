@@ -23,6 +23,11 @@ const LoginComponent: FC<AuthProps> = props => {
           <Icon name='google plus'/> Google Plusでログインする
         </Button>
         </li>
+        <li>
+        <Button className="btn" onClick={handleLogin}>
+          ゲストでログインする
+        </Button>
+        </li>
       </ul>
     </section>
   );
