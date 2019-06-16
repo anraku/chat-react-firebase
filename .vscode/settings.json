@@ -8,11 +8,9 @@
   },
   // 適応するファイルタイプを決定
   "eslint.validate": [
-    "javascript",
-    "typescript",
-    {
-      "language": "react",
-      "autoFix": true
-    }
+    { "language": "javascript", "autoFix": true },
+    { "language": "typescript", "autoFix": true },
+    { "language": "typescriptreact", "autoFix": true },
+    { "language": "react", "autoFix": true }
   ],
 }

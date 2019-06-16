@@ -13,35 +13,36 @@ const mapStateToProps = (state: ApplicationState): ChatState => ({
 });
 
 interface DispatchProps {
-  initialMessage: (messages: Message[]) => void;
+  initialDispatch: (messages: Message[]) => void;
 }
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  initialMessage: (messages: Message[]) => {
-    dispatch(initialMessage(messages))
-  }
+  initialDispatch: (messages: Message[]) => {
+    dispatch(initialMessage(messages));
+  },
 });
 
-const messagesRef = firebaseDB.ref('messages')
+const messagesRef = firebaseDB.ref('messages');
 
-type MessageListProps = ChatState & DispatchProps
-const MessageListContainer: FC<MessageListProps> = ({ messages, initialMessage }) => {
+type MessageListProps = ChatState & DispatchProps;
+const MessageListContainer: FC<MessageListProps> = ({
+  messages,
+  initialDispatch,
+}) => {
   useEffect(() => {
     messagesRef.once('value').then(snapshot => {
-      let messageList: Message[] = []
+      let messageList: Message[] = [];
       if (snapshot) {
-        messageList = messages.concat(Object.values(snapshot.val()))
+        messageList = messages.concat(Object.values(snapshot.val()));
       }
-      initialMessage(messageList);
+      initialDispatch(messageList);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <MessageListComponent messages={messages} />
-  );
-}
+  return <MessageListComponent messages={messages} />;
+};
 
 export const MessageList = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(MessageListContainer);

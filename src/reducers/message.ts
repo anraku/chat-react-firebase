@@ -10,15 +10,25 @@ export const initialMessage = (messages: Message[]) => ({
   messages,
 });
 
-export const addMessage = (author: string, message: string) => ({
+export const addMessage = (
+  author: string,
+  photoURL: string,
+  message: string,
+) => ({
   type: ADD_MESSAGE as typeof ADD_MESSAGE,
   author,
+  photoURL,
   message,
 });
 
-export const messageReceived = (author: string, message: string) => ({
+export const messageReceived = (
+  author: string,
+  photoURL: string,
+  message: string,
+) => ({
   type: MESSAGE_RECEIVED as typeof MESSAGE_RECEIVED,
   author,
+  photoURL,
   message,
 });
 
@@ -51,6 +61,7 @@ const message: Reducer<ChatState, ChatAction> = (
         ...state,
         messages: state.messages.concat({
           author: action.author,
+          photoURL: action.photoURL,
           message: action.message,
         }),
       };

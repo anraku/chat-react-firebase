@@ -1,12 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { Redirect } from 'react-router-dom';
 import firebase from '../config/index';
 
 import { AuthState, changeAuthStatus } from '../reducers/auth';
 import { ApplicationState } from '../reducers/index';
 import LoginComponent from '../components/LoginOAuth';
-import { Redirect } from 'react-router';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
   loginUser: state.auth.loginUser,
@@ -24,9 +24,9 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     const user = firebase.auth().currentUser;
     if (!user) {
       const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider);
+      firebase.auth().signInWithRedirect(provider);
     } else {
-      dispatch(changeAuthStatus(firebase.auth().currentUser));
+      dispatch(changeAuthStatus(user));
     }
   },
 });
@@ -42,15 +42,11 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
-  return (
-    loginUser? (
-      <Redirect to={'/chat'} />
-    ) : (
-      <LoginComponent
-        handleLogin={handleLogin}
-      />
-    )
+
+  return loginUser ? (
+    <Redirect to="/chat" />
+  ) : (
+    <LoginComponent handleLogin={handleLogin} />
   );
 };
 

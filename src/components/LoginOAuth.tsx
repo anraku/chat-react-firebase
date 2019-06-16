@@ -14,19 +14,19 @@ const LoginComponent: FC<AuthProps> = props => {
       <h2>ログインしてください</h2>
       <ul>
         <li>
-        <Button className="btn" color='twitter'>
-          <Icon name='twitter' /> Twitterでログインする
-        </Button>
+          <Button className="btn" color="twitter">
+            <Icon name="twitter" /> Twitterでログインする
+          </Button>
         </li>
         <li>
-        <Button className="btn" color='google plus' onClick={handleLogin}>
-          <Icon name='google plus'/> Google Plusでログインする
-        </Button>
+          <Button className="btn" color="google plus" onClick={handleLogin}>
+            <Icon name="google plus" /> Google Plusでログインする
+          </Button>
         </li>
         <li>
-        <Button className="btn" onClick={handleLogin}>
-          ゲストでログインする
-        </Button>
+          <Button className="btn" onClick={handleLogin}>
+            ゲストでログインする
+          </Button>
         </li>
       </ul>
     </section>

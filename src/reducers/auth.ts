@@ -9,6 +9,7 @@ export const changeAuthStatus = (user: firebase.User | null) => ({
   user,
 });
 
+// OAuthに切り替えたので使わない
 export const setUserName = (userName: string) => ({
   type: USER_LOGIN as typeof USER_LOGIN,
   userName,
@@ -19,7 +20,7 @@ export type AuthAction =
   | ReturnType<typeof setUserName>;
 
 export interface AuthState {
-  loginUser?: firebase.User | null;
+  loginUser: firebase.User | null;
   userName?: string;
 }
 
@@ -38,7 +39,7 @@ const auth: Reducer<AuthState, AuthAction> = (
         ...state,
         loginUser: action.user,
       };
-    case USER_LOGIN:
+    case USER_LOGIN: // OAuthに切り替えたので使わない
       return {
         ...state,
         userName: action.userName,

@@ -21,7 +21,7 @@ const store = createStore(reducers, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
-      <App />
+    <App />
   </Provider>,
   document.getElementById('root'),
 );

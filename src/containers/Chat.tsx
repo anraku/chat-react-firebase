@@ -7,6 +7,6 @@ const Chat: FC<{}> = () => (
     <MessageList />
     <AddMessage />
   </>
-)
+);
 
 export default Chat;

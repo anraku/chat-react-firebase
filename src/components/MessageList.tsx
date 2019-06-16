@@ -25,8 +25,8 @@ const MessageListComponent: FC<MessageListProps> = ({ messages = [] }) => {
   return (
     <Wrapper>
       <List>
-        {messages.map((message, index) => (
-          <MessageComponent key={index} message={message} />
+        {messages.map(message => (
+          <MessageComponent message={message} />
         ))}
       </List>
     </Wrapper>

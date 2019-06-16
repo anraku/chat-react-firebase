@@ -5,27 +5,28 @@ import { firebaseDB } from '../config/index';
 import AddMessageComponent from '../components/AddMessage';
 import { addMessage } from '../reducers/message';
 import { ApplicationState } from '../reducers/index';
-import { AuthState } from "../reducers/auth";
+import { AuthState } from '../reducers/auth';
 
-const messagesRef = firebaseDB.ref('messages')
+const messagesRef = firebaseDB.ref('messages');
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
-  userName: state.auth.userName,
+  loginUser: state.auth.loginUser,
 });
 
 interface DispatchProps {
-  addMessage: (message: string, author: string) => void;
+  addMessage: (author: string, photoURL: string, message: string) => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  addMessage: (author: string, message: string) => {
-    dispatch(addMessage(author, message))
+  addMessage: (author: string, photoURL: string, message: string) => {
+    dispatch(addMessage(author, photoURL, message));
 
     messagesRef.push({
       author,
+      photoURL,
       message,
     });
-  }
+  },
 });
 
 export const AddMessage = connect(

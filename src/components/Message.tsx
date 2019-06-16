@@ -12,10 +12,7 @@ const MessageComponent: FC<MessageProps> = props => {
 
   return (
     <List.Item>
-      <Image
-        avatar
-        src="https://react.semantic-ui.com/images/avatar/small/rachel.png"
-      />
+      <Image avatar src={message.photoURL} />
       <List.Content>
         <List.Header as="a">{message.author}</List.Header>
         <List.Description>{message.message}</List.Description>
