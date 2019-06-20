@@ -1,20 +1,37 @@
 import React, { FC } from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 import './LoginOAuth.css';
+import styled from 'styled-components';
+
+const FormWrapper = styled.div`
+  .txtLogin {
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);
+    border-width: 1px;
+  }
+
+  .btn {
+    display: block;
+  }
+`;
 
 interface AuthProps {
   handleLogin?: () => void;
+  handleTwitterLogin?: () => void;
+  handleGuestLogin?: () => void;
 }
 
 const LoginComponent: FC<AuthProps> = props => {
-  const { handleLogin } = props;
+  const { handleLogin, handleGuestLogin, handleTwitterLogin } = props;
 
   return (
     <section>
       <h2>ログインしてください</h2>
       <ul>
         <li>
-          <Button className="btn" color="twitter">
+          <Button className="btn" color="twitter" onClick={handleTwitterLogin}>
             <Icon name="twitter" /> Twitterでログインする
           </Button>
         </li>
@@ -24,9 +41,18 @@ const LoginComponent: FC<AuthProps> = props => {
           </Button>
         </li>
         <li>
-          <Button className="btn" onClick={handleLogin}>
-            ゲストでログインする
-          </Button>
+          <FormWrapper>
+            <form onSubmit={handleGuestLogin}>
+              <input
+                type="text"
+                className="txtLogin"
+                placeholder="input your name"
+              />
+              <Button className="btn" type="submit">
+                ゲストでログインする
+              </Button>
+            </form>
+          </FormWrapper>
         </li>
       </ul>
     </section>

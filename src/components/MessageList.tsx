@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import MessageComponent from './Message';
 import { Message } from '../domain/models';
 
-// import './MessageList.css';
-
 const Wrapper = styled.div`
   padding-left: 2%;
   padding-top: 2%;
@@ -25,8 +23,9 @@ const MessageListComponent: FC<MessageListProps> = ({ messages = [] }) => {
   return (
     <Wrapper>
       <List>
-        {messages.map(message => (
-          <MessageComponent message={message} />
+        {messages.map((message, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <MessageComponent key={index} message={message} />
         ))}
       </List>
     </Wrapper>
