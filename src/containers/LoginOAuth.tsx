@@ -7,6 +7,7 @@ import firebase from '../config/index';
 import { AuthState, changeAuthStatus } from '../reducers/auth';
 import { ApplicationState } from '../reducers/index';
 import LoginComponent from '../components/LoginOAuth';
+import { User } from '../domain/models';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
   loginUser: state.auth.loginUser,
@@ -15,6 +16,7 @@ const mapStateToProps = (state: ApplicationState): AuthState => ({
 export interface DispatchProps {
   dispatchAuthStatus: (user: firebase.User | null) => void;
   handleLogin: () => void;
+  handleGuestLogin: (e: any) => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -29,12 +31,21 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
       dispatch(changeAuthStatus(user));
     }
   },
+  handleGuestLogin: e => {
+    e.preventDefault();
+    const loginName = e.currentTarget.children.loginName.value;
+    const photoURL =
+      'https://react.semantic-ui.com/images/avatar/small/rachel.png';
+    const user: User = { displayName: loginName, photoURL };
+    dispatch(changeAuthStatus(user));
+  },
 });
 
 const LoginContainer: FC<AuthState & DispatchProps> = ({
   loginUser,
   dispatchAuthStatus,
   handleLogin,
+  handleGuestLogin,
 }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
@@ -46,7 +57,10 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   return loginUser ? (
     <Redirect to="/chat" />
   ) : (
-    <LoginComponent handleLogin={handleLogin} />
+    <LoginComponent
+      handleLogin={handleLogin}
+      handleGuestLogin={handleGuestLogin}
+    />
   );
 };
 

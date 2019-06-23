@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { User } from '../domain/models';
 
 const Wrapper = styled.div`
   bottom: 2%;
@@ -9,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 interface AddMessageProps {
-  loginUser: firebase.User | null;
+  loginUser: firebase.User | User | null;
   addMessage: (text: string, photoURL: string, author: string) => void;
 }
 

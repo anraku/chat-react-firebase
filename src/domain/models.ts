@@ -3,3 +3,8 @@ export interface Message {
   photoURL: string;
   message: string;
 }
+
+export interface User {
+  displayName: string;
+  photoURL: string;
+}

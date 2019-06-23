@@ -20,7 +20,7 @@ const FormWrapper = styled.div`
 interface AuthProps {
   handleLogin?: () => void;
   handleTwitterLogin?: () => void;
-  handleGuestLogin?: () => void;
+  handleGuestLogin?: (e: any) => void;
 }
 
 const LoginComponent: FC<AuthProps> = props => {
@@ -45,6 +45,8 @@ const LoginComponent: FC<AuthProps> = props => {
             <form onSubmit={handleGuestLogin}>
               <input
                 type="text"
+                name="loginName"
+                id="loginName"
                 className="txtLogin"
                 placeholder="input your name"
               />
