@@ -8,7 +8,7 @@ import { Message } from '../domain/models';
 const Wrapper = styled.div`
   padding-left: 2%;
   padding-top: 2%;
-  height: 90vh;
+  height: 82vh;
   overflow-y: auto;
   border-bottom-style: solid;
   border-width: 1px;

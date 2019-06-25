@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Redirect } from 'react-router-dom';
-import firebase from '../config/index';
+import firebase, { firebaseAuth } from '../config/index';
 
 import { AuthState, changeAuthStatus } from '../reducers/auth';
 import { ApplicationState } from '../reducers/index';
@@ -17,6 +17,7 @@ export interface DispatchProps {
   dispatchAuthStatus: (user: firebase.User | null) => void;
   handleLogin: () => void;
   handleGuestLogin: (e: any) => void;
+  handleLogout: () => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -39,6 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     const user: User = { displayName: loginName, photoURL };
     dispatch(changeAuthStatus(user));
   },
+  handleLogout: () => {
+    firebaseAuth.signOut();
+  },
 });
 
 const LoginContainer: FC<AuthState & DispatchProps> = ({
@@ -46,13 +50,20 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   dispatchAuthStatus,
   handleLogin,
   handleGuestLogin,
+  handleLogout,
 }) => {
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      dispatchAuthStatus(user);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   firebaseAuth.onAuthStateChanged(user => {
+  //     console.log('after mounted loginOAuth user is ', user);
+  //     dispatchAuthStatus(user);
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+  firebaseAuth.onAuthStateChanged(user => {
+    console.log('after mounted loginOAuth user is ', user);
+    dispatchAuthStatus(user);
+  });
+  console.log('before mount loginOAuth user is ', loginUser);
 
   return loginUser ? (
     <Redirect to="/chat" />
@@ -60,6 +71,7 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
     <LoginComponent
       handleLogin={handleLogin}
       handleGuestLogin={handleGuestLogin}
+      handleLogout={handleLogout}
     />
   );
 };

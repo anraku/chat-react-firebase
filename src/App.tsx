@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
+import PrivateRoute from './PrivateRoute';
+import Header from './components/Header';
 
 const App: React.FC = () => {
   return (
@@ -9,7 +11,7 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
-        <Route path="/chat" component={Chat} />
+        <PrivateRoute path="/chat" component={Chat} />
       </Switch>
     </BrowserRouter>
   );

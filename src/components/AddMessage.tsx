@@ -23,7 +23,7 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
 
   return (
     <Wrapper>
-      <div className="ui action fluid input">
+      <div className="ui fluid input">
         <input
           id="message-text"
           onKeyPress={e => {
@@ -45,7 +45,6 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
             input = node;
           }}
         />
-        <div className="ui button">送信</div>
       </div>
     </Wrapper>
   );
