@@ -53,7 +53,7 @@ const message: Reducer<ChatState, ChatAction> = (
     case INITIAL_MESSAGE:
       return {
         ...state,
-        messages: state.messages.concat(action.messages),
+        messages: action.messages,
       };
     case ADD_MESSAGE:
     case MESSAGE_RECEIVED:

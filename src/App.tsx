@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
 import PrivateRoute from './PrivateRoute';
-import Header from './components/Header';
 
 const App: React.FC = () => {
   return (

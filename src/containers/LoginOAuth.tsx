@@ -17,7 +17,6 @@ export interface DispatchProps {
   dispatchAuthStatus: (user: firebase.User | null) => void;
   handleLogin: () => void;
   handleGuestLogin: (e: any) => void;
-  handleLogout: () => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
@@ -40,9 +39,6 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     const user: User = { displayName: loginName, photoURL };
     dispatch(changeAuthStatus(user));
   },
-  handleLogout: () => {
-    firebaseAuth.signOut();
-  },
 });
 
 const LoginContainer: FC<AuthState & DispatchProps> = ({
@@ -50,7 +46,6 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   dispatchAuthStatus,
   handleLogin,
   handleGuestLogin,
-  handleLogout,
 }) => {
   // useEffect(() => {
   //   firebaseAuth.onAuthStateChanged(user => {
@@ -61,7 +56,9 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   // }, []);
   firebaseAuth.onAuthStateChanged(user => {
     console.log('after mounted loginOAuth user is ', user);
-    dispatchAuthStatus(user);
+    if (user !== null) {
+      dispatchAuthStatus(user);
+    }
   });
   console.log('before mount loginOAuth user is ', loginUser);
 
@@ -71,12 +68,9 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
     <LoginComponent
       handleLogin={handleLogin}
       handleGuestLogin={handleGuestLogin}
-      handleLogout={handleLogout}
     />
   );
 };
 
-export const Login = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LoginContainer);
+// eslint-disable-next-line prettier/prettier
+export const Login = connect(mapStateToProps,mapDispatchToProps)(LoginContainer);

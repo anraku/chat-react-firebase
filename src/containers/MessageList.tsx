@@ -32,7 +32,7 @@ const MessageListContainer: FC<MessageListProps> = ({
     messagesRef.once('value').then(snapshot => {
       let messageList: Message[] = [];
       if (snapshot) {
-        messageList = messages.concat(Object.values(snapshot.val()));
+        messageList = Object.values(snapshot.val());
       }
       initialDispatch(messageList);
     });

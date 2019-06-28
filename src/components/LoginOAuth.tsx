@@ -21,16 +21,10 @@ interface AuthProps {
   handleLogin?: () => void;
   handleTwitterLogin?: () => void;
   handleGuestLogin?: (e: any) => void;
-  handleLogout: () => void;
 }
 
 const LoginComponent: FC<AuthProps> = props => {
-  const {
-    handleLogin,
-    handleGuestLogin,
-    handleTwitterLogin,
-    handleLogout,
-  } = props;
+  const { handleLogin, handleGuestLogin, handleTwitterLogin } = props;
 
   return (
     <section>
@@ -61,11 +55,6 @@ const LoginComponent: FC<AuthProps> = props => {
               </Button>
             </form>
           </FormWrapper>
-        </li>
-        <li>
-          <Button className="btn" onClick={handleLogout}>
-            ログアウト
-          </Button>
         </li>
       </ul>
     </section>

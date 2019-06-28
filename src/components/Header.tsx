@@ -4,12 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { User } from '../domain/models';
 
-export interface HeaderProps {
-  loginUser?: firebase.User | User | null;
-  handleLogout?: () => void;
-}
-
-const Wrapper = styled.nav`
+const WrapperNav = styled.nav`
   height: 9vh;
 
   ul {
@@ -49,23 +44,29 @@ const Wrapper = styled.nav`
   }
 `;
 
+export interface HeaderProps {
+  loginUser: firebase.User | User | null;
+  handleLogout: () => void;
+}
+
 const Header: FC<HeaderProps> = props => {
   const { loginUser, handleLogout } = props;
+  const userName = loginUser ? loginUser.displayName : '名無しさん';
 
   return (
-    <Wrapper>
+    <WrapperNav>
       <ul>
         <li className="left">
           <Link to="/chat">ホーム</Link>
         </li>
-        <li className="right userName">{loginUser}</li>
+        <li className="right userName">{userName}</li>
         <li className="right">
           <Link to="/login" onClick={handleLogout}>
             ログアウト
           </Link>
         </li>
       </ul>
-    </Wrapper>
+    </WrapperNav>
   );
 };
 

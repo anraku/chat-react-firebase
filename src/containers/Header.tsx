@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../reducers/index';
-import { AuthState } from '../reducers/auth';
+import { AuthState, changeAuthStatus } from '../reducers/auth';
 import Header from '../components/Header';
+import { firebaseAuth } from '../config/index';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
   loginUser: state.auth.loginUser,
@@ -14,7 +14,10 @@ interface DispatchProps {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  handleLogout: () => {}, // TODO: ログアウト処理を書く
+  handleLogout: () => {
+    firebaseAuth.signOut();
+    dispatch(changeAuthStatus(null));
+  },
 });
 
 export default connect(
