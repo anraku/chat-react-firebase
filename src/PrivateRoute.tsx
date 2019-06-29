@@ -1,10 +1,10 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Route, RouteProps, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { ApplicationState } from './reducers/index';
 import { AuthState, changeAuthStatus } from './reducers/auth';
-import firebase, { firebaseAuth } from './config/index';
+import firebase from './config/index';
 import { User } from './domain/models';
 
 const mapStateToProps = (state: ApplicationState): AuthState => ({
@@ -24,7 +24,6 @@ type State = AuthState & DispatchProps & RouteProps;
 
 const PrivateRouteComponent: FC<State> = ({
   loginUser,
-  dispatchAuthStatus,
   component: Component,
   ...rest
 }) => {

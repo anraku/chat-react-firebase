@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Redirect } from 'react-router-dom';
@@ -47,20 +47,11 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   handleLogin,
   handleGuestLogin,
 }) => {
-  // useEffect(() => {
-  //   firebaseAuth.onAuthStateChanged(user => {
-  //     console.log('after mounted loginOAuth user is ', user);
-  //     dispatchAuthStatus(user);
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
   firebaseAuth.onAuthStateChanged(user => {
-    console.log('after mounted loginOAuth user is ', user);
     if (user !== null) {
       dispatchAuthStatus(user);
     }
   });
-  console.log('before mount loginOAuth user is ', loginUser);
 
   return loginUser ? (
     <Redirect to="/chat" />
@@ -72,5 +63,7 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   );
 };
 
-// eslint-disable-next-line prettier/prettier
-export const Login = connect(mapStateToProps,mapDispatchToProps)(LoginContainer);
+export const Login = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginContainer);
