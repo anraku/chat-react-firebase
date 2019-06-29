@@ -15,17 +15,27 @@ const mapStateToProps = (state: ApplicationState): AuthState => ({
 
 export interface DispatchProps {
   dispatchAuthStatus: (user: firebase.User | null) => void;
-  handleLogin: () => void;
+  handleGoogleLogin: () => void;
+  handleTwitterLogin: () => void;
   handleGuestLogin: (e: any) => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   dispatchAuthStatus: (user: firebase.User | null) =>
     dispatch(changeAuthStatus(user)),
-  handleLogin: () => {
+  handleGoogleLogin: () => {
     const user = firebase.auth().currentUser;
     if (!user) {
       const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithRedirect(provider);
+    } else {
+      dispatch(changeAuthStatus(user));
+    }
+  },
+  handleTwitterLogin: () => {
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      const provider = new firebase.auth.TwitterAuthProvider();
       firebase.auth().signInWithRedirect(provider);
     } else {
       dispatch(changeAuthStatus(user));
@@ -42,7 +52,8 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 const LoginContainer: FC<AuthState & DispatchProps> = ({
   loginUser,
   dispatchAuthStatus,
-  handleLogin,
+  handleGoogleLogin,
+  handleTwitterLogin,
   handleGuestLogin,
 }) => {
   firebaseAuth.onAuthStateChanged(user => {
@@ -55,7 +66,8 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
     <Redirect to="/chat" />
   ) : (
     <LoginComponent
-      handleLogin={handleLogin}
+      handleGoogleLogin={handleGoogleLogin}
+      handleTwitterLogin={handleTwitterLogin}
       handleGuestLogin={handleGuestLogin}
     />
   );

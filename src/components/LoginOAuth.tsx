@@ -18,13 +18,13 @@ const FormWrapper = styled.div`
 `;
 
 interface AuthProps {
-  handleLogin?: () => void;
-  handleTwitterLogin?: () => void;
-  handleGuestLogin?: (e: any) => void;
+  handleGoogleLogin: () => void;
+  handleTwitterLogin: () => void;
+  handleGuestLogin: (e: any) => void;
 }
 
 const LoginComponent: FC<AuthProps> = props => {
-  const { handleLogin, handleGuestLogin, handleTwitterLogin } = props;
+  const { handleGoogleLogin, handleGuestLogin, handleTwitterLogin } = props;
 
   return (
     <section>
@@ -36,7 +36,11 @@ const LoginComponent: FC<AuthProps> = props => {
           </Button>
         </li>
         <li>
-          <Button className="btn" color="google plus" onClick={handleLogin}>
+          <Button
+            className="btn"
+            color="google plus"
+            onClick={handleGoogleLogin}
+          >
             <Icon name="google plus" /> Google Plusでログインする
           </Button>
         </li>
