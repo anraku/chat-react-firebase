@@ -34,9 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   handleGuestLogin: e => {
     e.preventDefault();
     const loginName = e.currentTarget.children.loginName.value;
-    const photoURL =
-      'https://react.semantic-ui.com/images/avatar/small/rachel.png';
-    const user: User = { displayName: loginName, photoURL };
+    const user: User = { displayName: loginName, photoURL: '' };
     dispatch(changeAuthStatus(user));
   },
 });

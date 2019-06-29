@@ -17,8 +17,6 @@ interface AddMessageProps {
 const AddMessageComponent: FC<AddMessageProps> = props => {
   const { loginUser } = props;
   const guestName = '名無しさん';
-  const guestPhotoURL =
-    'https://react.semantic-ui.com/images/avatar/small/rachel.png';
   let input: HTMLInputElement;
 
   return (
@@ -31,11 +29,11 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
               if (loginUser) {
                 props.addMessage(
                   loginUser.displayName ? loginUser.displayName : guestName,
-                  loginUser.photoURL ? loginUser.photoURL : guestPhotoURL,
+                  loginUser.photoURL ? loginUser.photoURL : '',
                   input.value,
                 );
               } else {
-                props.addMessage(guestName, guestPhotoURL, input.value);
+                props.addMessage(guestName, '', input.value);
               }
               input.value = '';
             }
