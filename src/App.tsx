@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
 import PrivateRoute from './PrivateRoute';
+import RoomList from './containers/RoomList';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/chat" component={Chat} />
+        <Route path="/test" component={RoomList} />
       </Switch>
     </BrowserRouter>
   );
