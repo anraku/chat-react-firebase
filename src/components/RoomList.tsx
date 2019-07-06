@@ -35,11 +35,7 @@ export interface RoomProps {
 
 export type RoomListProps = RoomProps;
 
-const RoomListComponent: FC<RoomListProps> = ({
-  handleLink = () => {
-    console.log('test onclick'); // test code
-  },
-}) => {
+const RoomListComponent: FC<RoomListProps> = ({ handleLink = () => {} }) => {
   return (
     <RoomList>
       <Room handleLink={handleLink} />
@@ -47,11 +43,7 @@ const RoomListComponent: FC<RoomListProps> = ({
   );
 };
 
-const Room: FC<RoomProps> = ({
-  handleLink = () => {
-    console.log('test onclick'); // test code
-  },
-}) => {
+const Room: FC<RoomProps> = ({ handleLink = () => {} }) => {
   return (
     <RoomWrapper onClick={handleLink}>
       <Header>title</Header>
