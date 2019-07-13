@@ -1,6 +1,9 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Room } from '../domain/models';
+
 const RoomList = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
@@ -29,29 +32,37 @@ const Description = styled.div`
   border-top: solid 1px #eee;
 `;
 
-export interface RoomProps {
-  handleLink: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+export interface RoomListProps {
+  rooms: Room[];
 }
 
-export type RoomListProps = RoomProps;
-
-const RoomListComponent: FC<RoomListProps> = ({ handleLink = () => {} }) => {
+const RoomListComponent: FC<RoomListProps> = ({ rooms = [] }) => {
   return (
     <RoomList>
-      <Room handleLink={handleLink} />
+      {rooms.map((room, index) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <RoomComponent key={index} room={room} />
+      ))}
     </RoomList>
   );
 };
 
-const Room: FC<RoomProps> = ({ handleLink = () => {} }) => {
+type RoomProps = RouteComponentProps & { room: Room };
+const RoomComponent = withRouter((props: RoomProps) => {
+  const { id, title, description } = props.room;
+  const moveChat = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.preventDefault();
+    props.history.push(`/chat/${id}`);
+  };
+
   return (
-    <RoomWrapper onClick={handleLink}>
-      <Header>title</Header>
+    <RoomWrapper onClick={moveChat}>
+      <Header>{title}</Header>
       <Description>
-        <p>description</p>
+        <p>{description}</p>
       </Description>
     </RoomWrapper>
   );
-};
+});
 
 export default RoomListComponent;

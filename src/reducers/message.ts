@@ -11,22 +11,26 @@ export const initialMessage = (messages: Message[]) => ({
 });
 
 export const addMessage = (
+  roomID: string,
   author: string,
   photoURL: string,
   message: string,
 ) => ({
   type: ADD_MESSAGE as typeof ADD_MESSAGE,
+  roomID,
   author,
   photoURL,
   message,
 });
 
 export const messageReceived = (
+  roomID: string,
   author: string,
   photoURL: string,
   message: string,
 ) => ({
   type: MESSAGE_RECEIVED as typeof MESSAGE_RECEIVED,
+  roomID,
   author,
   photoURL,
   message,
@@ -60,6 +64,7 @@ const message: Reducer<ChatState, ChatAction> = (
       return {
         ...state,
         messages: state.messages.concat({
+          roomID: action.roomID,
           author: action.author,
           photoURL: action.photoURL,
           message: action.message,

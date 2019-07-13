@@ -15,6 +15,7 @@ const mapStateToProps = (state: ApplicationState): ChatState => ({
 interface DispatchProps {
   initialDispatch: (messages: Message[]) => void;
 }
+
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   initialDispatch: (messages: Message[]) => {
     dispatch(initialMessage(messages));

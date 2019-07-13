@@ -11,7 +11,12 @@ const Wrapper = styled.div`
 
 interface AddMessageProps {
   loginUser: firebase.User | User | null;
-  addMessage: (text: string, photoURL: string, author: string) => void;
+  addMessage: (
+    roomID: string,
+    text: string,
+    photoURL: string,
+    author: string,
+  ) => void;
 }
 
 const AddMessageComponent: FC<AddMessageProps> = props => {
@@ -28,12 +33,13 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
             if (e.key === 'Enter') {
               if (loginUser) {
                 props.addMessage(
+                  '',
                   loginUser.displayName ? loginUser.displayName : guestName,
                   loginUser.photoURL ? loginUser.photoURL : '',
                   input.value,
                 );
               } else {
-                props.addMessage(guestName, '', input.value);
+                props.addMessage('', guestName, '', input.value);
               }
               input.value = '';
             }

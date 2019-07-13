@@ -14,12 +14,22 @@ const mapStateToProps = (state: ApplicationState): AuthState => ({
 });
 
 interface DispatchProps {
-  addMessage: (author: string, photoURL: string, message: string) => void;
+  addMessage: (
+    roomID: string,
+    author: string,
+    photoURL: string,
+    message: string,
+  ) => void;
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  addMessage: (author: string, photoURL: string, message: string) => {
-    dispatch(addMessage(author, photoURL, message));
+  addMessage: (
+    roomID: string,
+    author: string,
+    photoURL: string,
+    message: string,
+  ) => {
+    dispatch(addMessage(roomID, author, photoURL, message));
 
     messagesRef.push({
       author,
