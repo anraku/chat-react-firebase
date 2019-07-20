@@ -63,7 +63,7 @@ const LoginContainer: FC<AuthState & DispatchProps> = ({
   });
 
   return loginUser ? (
-    <Redirect to="/chat" />
+    <Redirect to="/rooms" />
   ) : (
     <LoginComponent
       handleGoogleLogin={handleGoogleLogin}

@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
     dispatch(addMessage(roomID, author, photoURL, message));
 
     messagesRef.push({
+      roomID,
       author,
       photoURL,
       message,

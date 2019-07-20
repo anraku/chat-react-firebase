@@ -57,7 +57,7 @@ const Header: FC<HeaderProps> = props => {
     <WrapperNav>
       <ul>
         <li className="left">
-          <Link to="/chat">ホーム</Link>
+          <Link to="/rooms">ホーム</Link>
         </li>
         <li className="right userName">{userName}</li>
         <li className="right">

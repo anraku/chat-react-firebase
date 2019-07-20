@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { User } from '../domain/models';
 
 const Wrapper = styled.div`
@@ -19,8 +20,12 @@ interface AddMessageProps {
   ) => void;
 }
 
-const AddMessageComponent: FC<AddMessageProps> = props => {
-  const { loginUser } = props;
+interface Params {
+  roomID: string;
+}
+type Props = AddMessageProps & RouteComponentProps<Params>;
+const AddMessageComponent = withRouter((props: Props) => {
+  const { match, loginUser, addMessage } = props;
   const guestName = '名無しさん';
   let input: HTMLInputElement;
 
@@ -32,14 +37,14 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
           onKeyPress={e => {
             if (e.key === 'Enter') {
               if (loginUser) {
-                props.addMessage(
-                  '',
+                addMessage(
+                  match.params.roomID,
                   loginUser.displayName ? loginUser.displayName : guestName,
                   loginUser.photoURL ? loginUser.photoURL : '',
                   input.value,
                 );
               } else {
-                props.addMessage('', guestName, '', input.value);
+                addMessage(match.params.roomID, guestName, '', input.value);
               }
               input.value = '';
             }
@@ -52,6 +57,6 @@ const AddMessageComponent: FC<AddMessageProps> = props => {
       </div>
     </Wrapper>
   );
-};
+});
 
 export default AddMessageComponent;

@@ -22,10 +22,15 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   },
 });
 
+interface Params {
+  roomID: string;
+}
+
 const messagesRef = firebaseDB.ref('messages');
 
-type MessageListProps = ChatState & DispatchProps;
+type MessageListProps = ChatState & DispatchProps & Params;
 const MessageListContainer: FC<MessageListProps> = ({
+  roomID,
   messages,
   initialDispatch,
 }) => {
@@ -35,7 +40,7 @@ const MessageListContainer: FC<MessageListProps> = ({
       if (snapshot) {
         messageList = Object.values(snapshot.val());
       }
-      initialDispatch(messageList);
+      initialDispatch(messageList.filter(message => message.roomID === roomID));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
