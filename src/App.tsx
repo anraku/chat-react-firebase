@@ -4,6 +4,7 @@ import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
 import PrivateRoute from './PrivateRoute';
 import RoomList from './containers/RoomList';
+import NewRoom from './components/NewRoom';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path="/login" component={Login} />
         <PrivateRoute path="/chat/:roomID" component={Chat} />
         <Route path="/rooms" component={RoomList} />
+        <Route path="/rooms/new" component={NewRoom} />
       </Switch>
     </BrowserRouter>
   );

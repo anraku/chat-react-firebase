@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { withRouter, RouteComponentProps } from 'react-router-dom';
@@ -32,20 +32,47 @@ const Description = styled.div`
   border-top: solid 1px #eee;
 `;
 
-export interface RoomListProps {
-  rooms: Room[];
-}
+const AddRoomButton = styled.button`
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  background: #87befd;
+  color: #fff;
+  width: 80px;
+  height: 80px;
+  line-height: -5px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.4s;
+  font-size: 40px;
 
-const RoomListComponent: FC<RoomListProps> = ({ rooms = [] }) => {
+  &:hover {
+    background: #668ad8;
+  }
+`;
+
+type RoomListProps = RouteComponentProps & { rooms: Room[] };
+const RoomListComponent = withRouter((props: RoomListProps) => {
+  const { rooms } = props;
+  const CreateNewRoom = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+    props.history.push(`/room/new`);
+  };
+
   return (
-    <RoomList>
-      {rooms.map((room, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <RoomComponent key={index} room={room} />
-      ))}
-    </RoomList>
+    <>
+      <RoomList>
+        {rooms.map((room, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <RoomComponent key={index} room={room} />
+        ))}
+      </RoomList>
+      <AddRoomButton onClick={CreateNewRoom}>+</AddRoomButton>
+    </>
   );
-};
+});
 
 type RoomProps = RouteComponentProps & { room: Room };
 const RoomComponent = withRouter((props: RoomProps) => {
