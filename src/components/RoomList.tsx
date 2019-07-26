@@ -58,7 +58,7 @@ const RoomListComponent = withRouter((props: RoomListProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     e.preventDefault();
-    props.history.push(`/room/new`);
+    props.history.push(`/rooms/new`);
   };
 
   return (
