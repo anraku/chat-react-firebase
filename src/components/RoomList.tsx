@@ -36,7 +36,7 @@ const AddRoomButton = styled.button`
   position: absolute;
   right: 5%;
   bottom: 5%;
-  background: #87befd;
+  background: #2185d0;
   color: #fff;
   width: 80px;
   height: 80px;
@@ -47,7 +47,7 @@ const AddRoomButton = styled.button`
   font-size: 40px;
 
   &:hover {
-    background: #668ad8;
+    background: #1678c2;
   }
 `;
 
@@ -76,7 +76,7 @@ const RoomListComponent = withRouter((props: RoomListProps) => {
 
 type RoomProps = RouteComponentProps & { room: Room };
 const RoomComponent = withRouter((props: RoomProps) => {
-  const { id, title, description } = props.room;
+  const { id, name, description } = props.room;
   const moveChat = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     props.history.push(`/chat/${id}`);
@@ -84,7 +84,7 @@ const RoomComponent = withRouter((props: RoomProps) => {
 
   return (
     <RoomWrapper onClick={moveChat}>
-      <Header>{title}</Header>
+      <Header>{name}</Header>
       <Description>
         <p>{description}</p>
       </Description>

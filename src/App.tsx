@@ -4,7 +4,7 @@ import { Login } from './containers/LoginOAuth';
 import Chat from './containers/Chat';
 import PrivateRoute from './PrivateRoute';
 import RoomList from './containers/RoomList';
-import NewRoom from './components/NewRoom';
+import { NewRoom } from './containers/NewRoom';
 
 const App: React.FC = () => {
   return (

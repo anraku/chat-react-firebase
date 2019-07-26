@@ -12,6 +12,6 @@ export interface User {
 
 export interface Room {
   id: string;
-  title: string;
+  name: string;
   description: string;
 }
