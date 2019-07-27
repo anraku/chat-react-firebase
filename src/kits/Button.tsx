@@ -5,7 +5,7 @@ type ButtonType = 'button' | 'submit' | 'reset';
 interface ButtonProps {
   type?: ButtonType;
   value: string;
-  onClick?: (e: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const AgreeButtonWrapper = styled.button`

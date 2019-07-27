@@ -11,7 +11,7 @@ const Container = styled.div`
 
 interface NewRoomProps {
   handleCreateRoom: (e: any) => void;
-  handleCancel: (e: any) => void;
+  handleCancel: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const NewRoom: FC<NewRoomProps> = props => {

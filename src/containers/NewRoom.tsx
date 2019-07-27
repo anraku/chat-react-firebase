@@ -44,7 +44,7 @@ const NewRoomWithRouter = withRouter((props: NewRoomProps) => {
     });
     props.history.push(`/rooms`);
   };
-  const handleCancel = (e: any) => {
+  const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     props.history.push(`/rooms`);
   };
