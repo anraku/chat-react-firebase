@@ -5,7 +5,7 @@ type ButtonType = 'button' | 'submit' | 'reset';
 interface ButtonProps {
   type?: ButtonType;
   value: string;
-  handleFunc?: () => void;
+  onClick?: (e: any) => void;
 }
 
 const AgreeButtonWrapper = styled.button`
@@ -24,11 +24,11 @@ const AgreeButtonWrapper = styled.button`
 `;
 
 export const AgreeButton: FC<ButtonProps> = props => {
-  const { type = 'button', value, handleFunc } = props;
+  const { type = 'button', value, onClick } = props;
 
   return (
     <>
-      <AgreeButtonWrapper type={type} onClick={handleFunc}>
+      <AgreeButtonWrapper type={type} onClick={onClick}>
         {value}
       </AgreeButtonWrapper>
     </>
@@ -49,11 +49,11 @@ const CancelButtonWrapper = styled.button`
 `;
 
 export const CancelButton: FC<ButtonProps> = props => {
-  const { type = 'button', value, handleFunc } = props;
+  const { type = 'button', value, onClick } = props;
 
   return (
     <>
-      <CancelButtonWrapper type={type} onClick={handleFunc}>
+      <CancelButtonWrapper type={type} onClick={onClick}>
         {value}
       </CancelButtonWrapper>
     </>

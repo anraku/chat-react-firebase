@@ -11,10 +11,11 @@ const Container = styled.div`
 
 interface NewRoomProps {
   handleCreateRoom: (e: any) => void;
+  handleCancel: (e: any) => void;
 }
 
 const NewRoom: FC<NewRoomProps> = props => {
-  const { handleCreateRoom } = props;
+  const { handleCreateRoom, handleCancel } = props;
 
   return (
     <>
@@ -26,7 +27,11 @@ const NewRoom: FC<NewRoomProps> = props => {
           <Label value="ルームの説明" />
           <TextField id="roomDescription" />
           <AgreeButton type="submit" value="ルームを作成する" />
-          <CancelButton type="button" value="キャンセル" />
+          <CancelButton
+            type="button"
+            value="キャンセル"
+            onClick={handleCancel}
+          />
         </form>
       </Container>
     </>

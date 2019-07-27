@@ -18,13 +18,15 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
   },
 });
 
-const Chat = withRouter((props: RouteComponentProps<{ roomID: string }>) => {
-  const { params } = props.match;
+type ChatProps = RouteComponentProps<{ roomID: string }> & DispatchProps;
+const Chat = withRouter((props: ChatProps) => {
+  const { match, initialDispatch } = props;
+  initialDispatch([]); // 以前訪れたチャットルームのメッセージが表示されないように初期化する
 
   return (
     <>
       <Header />
-      <MessageList roomID={params.roomID} />
+      <MessageList roomID={match.params.roomID} />
       <AddMessage />
     </>
   );
