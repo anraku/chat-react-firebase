@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -21,7 +21,9 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
 type ChatProps = RouteComponentProps<{ roomID: string }> & DispatchProps;
 const Chat = withRouter((props: ChatProps) => {
   const { match, initialDispatch } = props;
-  initialDispatch([]); // 以前訪れたチャットルームのメッセージが表示されないように初期化する
+  useEffect(() => {
+    return () => initialDispatch([]); // 以前訪れたチャットルームのメッセージが表示されないように初期化する
+  }, []);
 
   return (
     <>
