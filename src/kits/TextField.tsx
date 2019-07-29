@@ -2,7 +2,8 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 interface TextFieldProps {
-  id: string;
+  id?: string;
+  placeholder?: string;
 }
 
 const TextFieldWrapper = styled.input`
@@ -16,11 +17,9 @@ const TextFieldWrapper = styled.input`
 `;
 
 const TextField: FC<TextFieldProps> = props => {
-  const { id } = props;
-
   return (
     <>
-      <TextFieldWrapper type="text" id={id} />
+      <TextFieldWrapper type="text" {...props} />
     </>
   );
 };

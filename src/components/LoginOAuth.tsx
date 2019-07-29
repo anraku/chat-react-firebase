@@ -1,19 +1,23 @@
 import React, { FC } from 'react';
 import { Button, Icon } from 'semantic-ui-react';
-import './LoginOAuth.css';
 import styled from 'styled-components';
+import TextField from '../kits/TextField';
 
-const FormWrapper = styled.div`
-  .txtLogin {
-    height: 30px;
-    margin-bottom: 10px;
-    border-radius: 3px;
-    box-shadow: inset 1px 4px 9px -6px rgba(0, 0, 0, 0.5);
-    border-width: 1px;
+const EnteranceGroup = styled.ul`
+  .twitterIcon {
+    width: 20px;
+    height: 20px;
+    fill: '#1DA1F2';
   }
 
   .btn {
     display: block;
+    margin-top: 5px;
+  }
+
+  li {
+    padding-top: 10px;
+    list-style-type: none;
   }
 `;
 
@@ -29,7 +33,7 @@ const LoginComponent: FC<AuthProps> = props => {
   return (
     <section>
       <h2>ログインしてください</h2>
-      <ul>
+      <EnteranceGroup>
         <li>
           <Button className="btn" color="twitter" onClick={handleTwitterLogin}>
             <Icon name="twitter" /> Twitterでログインする
@@ -45,22 +49,14 @@ const LoginComponent: FC<AuthProps> = props => {
           </Button>
         </li>
         <li>
-          <FormWrapper>
-            <form onSubmit={handleGuestLogin}>
-              <input
-                type="text"
-                name="loginName"
-                id="loginName"
-                className="txtLogin"
-                placeholder="input your name"
-              />
-              <Button className="btn" type="submit">
-                ゲストでログインする
-              </Button>
-            </form>
-          </FormWrapper>
+          <form onSubmit={handleGuestLogin}>
+            <TextField id="loginName" placeholder="ユーザ名" />
+            <Button className="btn" type="submit">
+              ゲストでログインする
+            </Button>
+          </form>
         </li>
-      </ul>
+      </EnteranceGroup>
     </section>
   );
 };

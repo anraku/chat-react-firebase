@@ -33,7 +33,7 @@ const Description = styled.div`
 `;
 
 const AddRoomButton = styled.button`
-  position: absolute;
+  position: fixed;
   right: 5%;
   bottom: 5%;
   background: #2185d0;
@@ -45,6 +45,7 @@ const AddRoomButton = styled.button`
   overflow: hidden;
   transition: 0.4s;
   font-size: 40px;
+  z-index: 1;
 
   &:hover {
     background: #1678c2;

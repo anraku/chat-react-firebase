@@ -23,6 +23,7 @@ const Chat = withRouter((props: ChatProps) => {
   const { match, initialDispatch } = props;
   useEffect(() => {
     return () => initialDispatch([]); // 以前訪れたチャットルームのメッセージが表示されないように初期化する
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
