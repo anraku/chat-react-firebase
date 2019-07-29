@@ -15,7 +15,8 @@ const RoomWrapper = styled.div`
   height: 150px;
   border-style: solid;
   border-color: #eee;
-  border-radius: 5px;
+  border-width: 2px;
+  border-radius: 0.3rem;
   background: #fff;
   color: #111;
   flex-basis: 100px;
