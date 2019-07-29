@@ -36,6 +36,6 @@ const Chat = withRouter((props: ChatProps) => {
 });
 
 export default connect(
-  () => {},
+  undefined,
   mapDispatchToProps,
 )(Chat);
