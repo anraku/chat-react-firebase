@@ -7,11 +7,27 @@ import { Room } from '../domain/models';
 const RoomList = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
+  width: 100%;
+  padding-right: 1%;
+
+  div {
+    /* モバイルファースト */
+    margin-top: 1%;
+    margin-left: 1%;
+    flex-basis: 100%;
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      flex-basis: 49%;
+    }
+
+    @media screen and (min-width: 1024px) {
+      flex-basis: 24%;
+    }
+  }
 `;
 
 const RoomWrapper = styled.div`
   display: block;
-  margin: 10px;
   height: 150px;
   border-style: solid;
   border-color: #eee;
@@ -19,16 +35,13 @@ const RoomWrapper = styled.div`
   border-radius: 0.3rem;
   background: #fff;
   color: #111;
-  flex-basis: 100px;
 `;
 
 const Header = styled.div`
-  width: 300px;
   padding: 10px;
 `;
 
 const Description = styled.div`
-  width: 300px;
   padding: 10px;
   border-top: solid 1px #eee;
 `;
@@ -44,7 +57,6 @@ const AddRoomButton = styled.button`
   line-height: -5px;
   border-radius: 50%;
   overflow: hidden;
-  transition: 0.4s;
   font-size: 40px;
   z-index: 1;
 
