@@ -52,13 +52,19 @@ const AddRoomButton = styled.button`
   bottom: 5%;
   background: #2185d0;
   color: #fff;
-  width: 80px;
-  height: 80px;
-  line-height: -5px;
+  line-height: 0.15;
   border-radius: 50%;
   overflow: hidden;
-  font-size: 40px;
+  font-size: 30px;
   z-index: 1;
+  width: 60px;
+  height: 60px;
+
+  @media screen and (min-width: 768px) {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+  }
 
   &:hover {
     background: #1678c2;

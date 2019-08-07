@@ -32,7 +32,6 @@ const LoginComponent: FC<AuthProps> = props => {
 
   return (
     <section>
-      <h2>ログインしてください</h2>
       <EnteranceGroup>
         <li>
           <Button className="btn" color="twitter" onClick={handleTwitterLogin}>
